@@ -1,4 +1,4 @@
-package com.singtel.assignment.bird;
+package com.singtel.assignment.bean.bird;
 
 public class ParrotLivesWithDog extends Parrot {
 

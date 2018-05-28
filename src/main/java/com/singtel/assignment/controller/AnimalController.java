@@ -1,4 +1,4 @@
-package com.singtel.assignment;
+package com.singtel.assignment.controller;
 
 import com.singtel.assignment.service.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/animal")
-public class RestService {
+public class AnimalController {
 
     @Autowired
     AnimalService animalService;

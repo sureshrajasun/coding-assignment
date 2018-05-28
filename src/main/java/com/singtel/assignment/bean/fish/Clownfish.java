@@ -1,4 +1,4 @@
-package com.singtel.assignment.fish;
+package com.singtel.assignment.bean.fish;
 
 
 public class Clownfish extends Fish {

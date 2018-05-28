@@ -1,4 +1,4 @@
-package com.singtel.assignment.base;
+package com.singtel.assignment.bean.core;
 
 public class Bird extends Animal {
 

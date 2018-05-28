@@ -1,6 +1,6 @@
-package com.singtel.assignment.insect;
+package com.singtel.assignment.bean.insect;
 
-import com.singtel.assignment.base.Bird;
+import com.singtel.assignment.bean.core.Bird;
 
 public class Butterfly extends Bird {
 

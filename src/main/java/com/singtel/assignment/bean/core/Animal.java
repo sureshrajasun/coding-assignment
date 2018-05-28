@@ -1,4 +1,4 @@
-package com.singtel.assignment.base;
+package com.singtel.assignment.bean.core;
 
 public abstract class Animal {
     public String name;

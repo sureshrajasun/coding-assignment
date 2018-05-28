@@ -1,18 +1,16 @@
 package com.singtel.assignment;
 
-import com.singtel.assignment.fish.Clownfish;
-import com.singtel.assignment.fish.Dolphin;
-import com.singtel.assignment.fish.Fish;
-import com.singtel.assignment.fish.Shark;
-import com.singtel.assignment.base.Animal;
-import com.singtel.assignment.base.Bird;
-import com.singtel.assignment.bird.Chicken;
-import com.singtel.assignment.bird.Duck;
-import com.singtel.assignment.bird.Parrot;
-import com.singtel.assignment.bird.Rooster;
-import com.singtel.assignment.insect.Butterfly;
-
-import java.lang.reflect.Field;
+import com.singtel.assignment.bean.fish.Clownfish;
+import com.singtel.assignment.bean.fish.Dolphin;
+import com.singtel.assignment.bean.fish.Fish;
+import com.singtel.assignment.bean.fish.Shark;
+import com.singtel.assignment.bean.core.Animal;
+import com.singtel.assignment.bean.core.Bird;
+import com.singtel.assignment.bean.bird.Chicken;
+import com.singtel.assignment.bean.bird.Duck;
+import com.singtel.assignment.bean.bird.Parrot;
+import com.singtel.assignment.bean.bird.Rooster;
+import com.singtel.assignment.bean.insect.Butterfly;
 
 public class Solution {
 
@@ -30,46 +28,74 @@ public class Solution {
                 new Butterfly(),
         };
 
-        int flyCount = 0;
-        int walkCount = 0;
-        int swimCount = 0;
-        int singCount = 0;
+        GetAnimalActivities getAnimalActivities = new GetAnimalActivities(animals).invoke();
 
-        for (Animal animal : animals){
-
-            if (animal instanceof Bird){
-                Bird bird = (Bird) animal;
-                if("I am flying".equals(bird.fly())){
-                    flyCount ++;
-                }
-            }
-
-            if("I am walking".equals(animal.walk())){
-                walkCount ++;
-            }
-
-            if (animal instanceof Duck || animal instanceof Fish || animal instanceof Dolphin){
-                swimCount ++;
-            }
-
-            if (animal instanceof Bird){
-                Bird bird  = (Bird) animal;
-                if(!"I cannot sing".equals(bird.sing())){
-                    singCount ++;
-                }
-            }else if(animal instanceof Rooster){
-                singCount ++;
-            }
-
-
-
-        }
-
-        System.out.printf("Number of Animals can fly %d", flyCount);
-        System.out.printf("\nNumber of Animals can walk %d", walkCount);
-        System.out.printf("\nNumber of Animals can sing %d", singCount);
-        System.out.printf("\nNumber of Animals can swim %d", swimCount);
+        System.out.printf("Number of Animals can fly %d", getAnimalActivities.getFlyCount());
+        System.out.printf("\nNumber of Animals can walk %d", getAnimalActivities.getWalkCount());
+        System.out.printf("\nNumber of Animals can sing %d", getAnimalActivities.getSingCount());
+        System.out.printf("\nNumber of Animals can swim %d", getAnimalActivities.getSwimCount());
 
     }
 
+    public static class GetAnimalActivities {
+        private Animal[] animals;
+        private Integer flyCount;
+        private Integer walkCount;
+        private Integer swimCount;
+        private Integer singCount;
+
+        public GetAnimalActivities(Animal[] animals) {
+            this.animals = animals;
+            this.flyCount = 0;
+            this.walkCount = 0;
+            this.swimCount = 0;
+            this.singCount = 0;
+        }
+
+        public Integer getFlyCount() {
+            return flyCount;
+        }
+
+        public Integer getWalkCount() {
+            return walkCount;
+        }
+
+        public Integer getSwimCount() {
+            return swimCount;
+        }
+
+        public Integer getSingCount() {
+            return singCount;
+        }
+
+        public GetAnimalActivities invoke() {
+            for (Animal animal : animals){
+
+                if (animal instanceof Bird){
+                    Bird bird = (Bird) animal;
+                    if("I am flying".equals(bird.fly())){
+                        flyCount ++;
+                    }
+                }
+
+                if("I am walking".equals(animal.walk())){
+                    walkCount ++;
+                }
+
+                if (animal instanceof Duck || animal instanceof Fish || animal instanceof Dolphin){
+                    swimCount ++;
+                }
+
+                if (animal instanceof Bird){
+                    Bird bird  = (Bird) animal;
+                    if(!"I cannot sing".equals(bird.sing())){
+                        singCount ++;
+                    }
+                }else if(animal instanceof Rooster){
+                    singCount ++;
+                }
+            }
+            return this;
+        }
+    }
 }

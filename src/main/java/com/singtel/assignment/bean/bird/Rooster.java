@@ -1,6 +1,6 @@
-package com.singtel.assignment.bird;
+package com.singtel.assignment.bean.bird;
 
-import com.singtel.assignment.base.Animal;
+import com.singtel.assignment.bean.core.Animal;
 
 
 public class Rooster extends Animal {

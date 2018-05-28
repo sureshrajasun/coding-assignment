@@ -1,6 +1,6 @@
-package com.singtel.assignment.fish;
+package com.singtel.assignment.bean.fish;
 
-import com.singtel.assignment.base.Animal;
+import com.singtel.assignment.bean.core.Animal;
 
 
 public class Fish extends Animal {

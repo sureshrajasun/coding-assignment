@@ -1,6 +1,6 @@
-package com.singtel.assignment.bird;
+package com.singtel.assignment.bean.bird;
 
-import com.singtel.assignment.base.Bird;
+import com.singtel.assignment.bean.core.Bird;
 
 public class Parrot extends Bird {
 

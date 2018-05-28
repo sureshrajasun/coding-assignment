@@ -1,4 +1,4 @@
-package com.singtel.assignment.insect;
+package com.singtel.assignment.bean.insect;
 
 public class Caterpillar extends Butterfly{
 

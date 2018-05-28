@@ -1,47 +1,27 @@
 package com.singtel.assignment.service;
 
-import com.singtel.assignment.base.Animal;
-import com.singtel.assignment.base.Bird;
-import com.singtel.assignment.bird.Chicken;
-import com.singtel.assignment.bird.Duck;
-import com.singtel.assignment.bird.Parrot;
-import com.singtel.assignment.bird.Rooster;
-import com.singtel.assignment.fish.Clownfish;
-import com.singtel.assignment.fish.Dolphin;
-import com.singtel.assignment.fish.Fish;
-import com.singtel.assignment.fish.Shark;
-import com.singtel.assignment.insect.Butterfly;
-import com.singtel.assignment.insect.Caterpillar;
+import com.singtel.assignment.repo.AnimalRepo;
+import com.singtel.assignment.bean.core.Animal;
+import com.singtel.assignment.bean.core.Bird;
+import com.singtel.assignment.bean.bird.Duck;
+import com.singtel.assignment.bean.bird.Rooster;
+import com.singtel.assignment.bean.fish.Dolphin;
+import com.singtel.assignment.bean.fish.Fish;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
 
 @Component
 public class AnimalService {
 
-    Animal[] animals;
-    @PostConstruct
-    public void init(){
-        animals = new Animal[]{
-                new Bird(),
-                new Duck(),
-                new Chicken(),
-                new Rooster(),
-                new Parrot(),
-                new Fish(),
-                new Shark(),
-                new Clownfish(),
-                new Dolphin(),
-                new Butterfly(),
-                new Caterpillar()
-        };
-    }
+    @Autowired
+    AnimalRepo animalRepo;
 
     public List<String> getAll() {
         List<String> animalName = new ArrayList<>();
-        for (Animal animal : animals) {
+        for (Animal animal : animalRepo.findAllAnimals()) {
             animalName.add(animal.name);
         }
         return animalName;
@@ -50,7 +30,7 @@ public class AnimalService {
     public List<String> getCanFly() {
         List<String> animalsCanFly = new ArrayList<>();
 
-        for (Animal animal : animals) {
+        for (Animal animal : animalRepo.findAllAnimals()) {
             if (animal instanceof Bird) {
                 Bird bird = (Bird) animal;
                 if ("I am flying".equals(bird.fly())) {
@@ -64,10 +44,10 @@ public class AnimalService {
     public List<String> getCanWalk() {
         List<String> animalsCanWalk = new ArrayList<>();
 
-        for (Animal animal : animals) {
+        for (Animal animal : animalRepo.findAllAnimals()) {
             if (animal instanceof Bird) {
                 Bird bird = (Bird) animal;
-                if("I am walking".equals(animal.walk())){
+                if ("I am walking".equals(animal.walk())) {
                     animalsCanWalk.add(animal.name);
                 }
 
@@ -78,8 +58,8 @@ public class AnimalService {
 
     public List<String> getCanSwim() {
         List<String> animalsCanSwim = new ArrayList<>();
-        for (Animal animal : animals) {
-            if (animal instanceof Duck || animal instanceof Fish || animal instanceof Dolphin){
+        for (Animal animal : animalRepo.findAllAnimals()) {
+            if (animal instanceof Duck || animal instanceof Fish || animal instanceof Dolphin) {
                 animalsCanSwim.add(animal.name);
             }
         }
@@ -88,13 +68,13 @@ public class AnimalService {
 
     public List<String> getCanSing() {
         List<String> animalsCanSwim = new ArrayList<>();
-        for (Animal animal : animals) {
-            if (animal instanceof Bird){
-                Bird bird  = (Bird) animal;
-                if(!"I cannot sing".equals(bird.sing())){
+        for (Animal animal : animalRepo.findAllAnimals()) {
+            if (animal instanceof Bird) {
+                Bird bird = (Bird) animal;
+                if (!"I cannot sing".equals(bird.sing())) {
                     animalsCanSwim.add(animal.name);
                 }
-            }else if(animal instanceof Rooster){
+            } else if (animal instanceof Rooster) {
                 animalsCanSwim.add(animal.name);
             }
         }
